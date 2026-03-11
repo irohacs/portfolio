@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORE AXIS | プレミアム・パーソナルトレーニングスタジオ</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Noto+Sans+JP:wght@300;400;700&family=Noto+Serif+JP:wght@600&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg-base: #fdfdfd;
+            --accent-gold: #a68966;
+            --text-dark: #1a1a1a;
+        }
+        body { font-family: 'Noto Sans JP', sans-serif; background-color: var(--bg-base); }
+        .font-heading { font-family: 'Oswald', sans-serif; }
+        .font-serif { font-family: 'Noto Serif JP', serif; }
+        
+        .fade-in { animation: fadeIn 1.5s ease-out forwards; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .img-premium { 
+            filter: grayscale(0.2); 
+            transition: transform 0.7s ease, filter 0.5s ease;
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .img-premium:hover { 
+            transform: scale(1.02);
+            filter: grayscale(0);
+        }
+        
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: var(--accent-gold);
+            margin: 20px auto 0;
+        }
+
+        .btn-premium {
+            background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+            transition: 0.3s;
+        }
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        html { scroll-behavior: smooth; }
+
+        #navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+        }
+        #navbar.scrolled .nav-text { color: #1c1917 !important; }
+        #navbar.scrolled .nav-subtext { color: #78716c !important; }
+
+        .play-button-ripple::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid white;
+            border-radius: 50%;
+            animation: ripple 2s infinite;
+        }
+        @keyframes ripple {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.8); opacity: 0; }
+        }
+
+        #profile-extra {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s ease-out, opacity 0.4s ease-out;
+            opacity: 0;
+        }
+        #profile-extra.open {
+            max-height: 2000px; 
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="text-stone-800 antialiased">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-[100] transition-all duration-500 py-4 sm:py-6">
+        <div class="container mx-auto px-4 sm:px-6 flex justify-between items-center">
+            <div class="flex flex-col text-left">
+                <span class="text-xl sm:text-2xl font-heading font-bold tracking-[0.2em] text-white leading-none drop-shadow-md transition-colors duration-300 nav-text">CORE AXIS</span>
+                <span class="text-[7px] sm:text-[8px] tracking-[0.2em] text-stone-300 mt-1 uppercase font-bold italic drop-shadow-md transition-colors duration-300 nav-subtext">The Science of Strength</span>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-6 lg:space-x-8 text-[10px] font-bold tracking-[0.2em] text-white transition-colors duration-300 nav-text">
+                <a href="#about" class="hover:text-amber-500 transition-colors uppercase drop-shadow-md">指導理念</a>
+                <a href="#trainer" class="hover:text-amber-500 transition-colors uppercase drop-shadow-md">トレーナー</a>
+                <a href="#voice" class="hover:text-amber-500 transition-colors uppercase drop-shadow-md">体験者の声</a>
+                <a href="#price" class="hover:text-amber-500 transition-colors uppercase drop-shadow-md">料金プラン</a>
+                <a href="#access" class="hover:text-amber-500 transition-colors uppercase drop-shadow-md">アクセス</a>
+                <a href="#trial" class="btn-premium text-white px-6 lg:px-8 py-3 rounded-sm transition-all uppercase shadow-lg text-center">無料体験予約</a>
+            </div>
+
+            <button class="md:hidden text-white drop-shadow-md p-2 nav-text" onclick="toggleMenu()">
+                <i data-lucide="menu" id="menu-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-stone-100 p-8 flex flex-col space-y-6 shadow-2xl font-bold text-center">
+            <a href="#about" class="text-sm tracking-widest text-stone-900" onclick="toggleMenu()">指導理念</a>
+            <a href="#trainer" class="text-sm tracking-widest text-stone-900" onclick="toggleMenu()">トレーナー紹介</a>
+            <a href="#voice" class="text-sm tracking-widest text-stone-900" onclick="toggleMenu()">体験者の声</a>
+            <a href="#movie" class="text-sm tracking-widest text-stone-900" onclick="toggleMenu()">動画</a>
+            <a href="#price" class="text-sm tracking-widest text-stone-900" onclick="toggleMenu()">料金プラン</a>
+            <a href="#access" class="text-sm tracking-widest text-stone-900" onclick="toggleMenu()">アクセス</a>
+            <a href="#trial" class="btn-premium text-white py-4 rounded-sm text-xs tracking-widest text-center uppercase">無料体験予約</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex items-center justify-center overflow-hidden bg-black text-center">
+        <div class="absolute inset-0 z-0">
+            <img src="https://github.com/yakimoto-design/image/blob/main/overroad/%E3%82%AA%E3%83%BC%E3%83%90%E3%83%BC%E3%83%AD%E3%83%BC%E3%83%892.png?raw=true" alt="Core Axis Hero" class="w-full h-full object-cover opacity-60">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/70"></div>
+        </div>
+
+        <div class="container mx-auto px-4 sm:px-6 relative z-10 fade-in text-white">
+            <p class="text-amber-500 font-heading tracking-[0.3em] sm:tracking-[0.4em] text-[10px] sm:text-xs mb-6 sm:mb-8 uppercase font-bold drop-shadow-lg">20年の研鑽が導く「本物」の指導</p>
+            <h1 class="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-8 sm:mb-10 leading-[1.3] sm:leading-[1.2] md:leading-[1.1] tracking-tighter drop-shadow-2xl">
+                自己流の10年を、<br />
+                <span class="text-white opacity-95">最速で超えていく。</span>
+            </h1>
+            <div class="w-10 sm:w-12 h-0.5 bg-amber-500 mx-auto mb-10 shadow-xl"></div>
+            <p class="text-xs sm:text-base md:text-lg text-stone-100 max-w-2xl mx-auto mb-10 sm:mb-12 leading-loose tracking-widest font-medium drop-shadow-md px-4">
+                解剖学とバイオメカニクスに基づいた「一生モノ」のトレーニング技術。<br class="hidden sm:block" />
+                あなたの身体のポテンシャルを、CORE AXISが覚醒させる。
+            </p>
+            <div class="px-4">
+                <a href="#trial" class="inline-block w-full sm:w-auto btn-premium text-white px-8 sm:px-14 py-5 sm:py-6 rounded-sm text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase transition-all font-bold shadow-2xl border border-white/10 hover:border-white/30">
+                    無料体験トレーニングを予約する
+                </a>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+            <i data-lucide="chevron-down" class="text-white opacity-50 w-6 h-6 sm:w-8 sm:h-8"></i>
+        </div>
+    </header>
+
+    <!-- 指導理念 Section -->
+    <section id="about" class="py-24 sm:py-32 bg-stone-50 text-center">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto mb-16 sm:mb-24">
+                <h2 class="text-[10px] tracking-[0.4em] text-amber-800 uppercase mb-4 font-bold italic">Philosophy</h2>
+                <h3 class="text-2xl sm:text-3xl md:text-5xl font-heading font-bold tracking-tight text-stone-900 mb-8 leading-tight section-title uppercase">CORE AXISが選ばれる理由</h3>
+                <p class="text-stone-600 leading-loose text-xs sm:text-sm md:text-base tracking-widest font-medium mt-10 px-2">
+                    流行に左右されない、解剖学が証明する「身体操作」の本質を伝えます。<br />
+                    ただ重いものを挙げるのではなく、狙った筋肉を確実に捉える技術を提供します。
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-12 sm:gap-16 lg:gap-24">
+                <div class="flex flex-col items-center">
+                    <div class="mb-6 sm:mb-8 text-stone-900"><i data-lucide="award" class="w-10 h-10 sm:w-12 sm:h-12"></i></div>
+                    <h4 class="text-lg sm:text-xl font-heading font-bold mb-4 sm:mb-6 tracking-widest text-stone-900 uppercase">20年の実践経験</h4>
+                    <p class="text-stone-500 text-xs sm:text-sm leading-relaxed tracking-wider font-medium italic">長年の競技生活で培った、理論だけでは到達できない「身体の感覚」を伝授。</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="mb-6 sm:mb-8 text-stone-900"><i data-lucide="brain" class="w-10 h-10 sm:w-12 sm:h-12"></i></div>
+                    <h4 class="text-lg sm:text-xl font-heading font-bold mb-4 sm:mb-6 tracking-widest text-stone-900 uppercase">エビデンスベース</h4>
+                    <p class="text-stone-500 text-xs sm:text-sm leading-relaxed tracking-wider font-medium italic">解剖学に基づき、ケガのリスクを最小限に抑えつつ最大効率の刺激を目指します。</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="mb-6 sm:mb-8 text-stone-900"><i data-lucide="target" class="w-10 h-10 sm:w-12 sm:h-12"></i></div>
+                    <h4 class="text-lg sm:text-xl font-heading font-bold mb-4 sm:mb-6 tracking-widest text-stone-900 uppercase">完全個別最適化</h4>
+                    <p class="text-stone-500 text-xs sm:text-sm leading-relaxed tracking-wider font-medium italic">骨格や柔軟性、ライフスタイルに合わせた唯一無二のプログラムを構成。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- トレーナー紹介 Section -->
+    <section id="trainer" class="py-24 sm:py-32 bg-white text-center">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
+                <!-- 写真枠 -->
+                <div class="w-full lg:w-2/5 flex justify-center lg:sticky lg:top-32">
+                    <div class="relative w-full max-w-sm">
+                        <div class="absolute -inset-4 border-2 border-stone-100 -z-10 translate-x-2 translate-y-2"></div>
+                        <div class="absolute inset-0 bg-stone-900/5 -z-10 -translate-x-2 -translate-y-2"></div>
+                        
+                        <div class="bg-stone-100 overflow-hidden shadow-2xl">
+                            <!-- 指定されたトレーナー画像に差し替え -->
+                            <img src="https://github.com/yakimoto-design/image/blob/main/%E3%82%B8%E3%83%A0%E3%83%88%E3%83%AC%E3%83%BC%E3%83%8A%E3%83%BC.png?raw=true" alt="Trainer Profile" class="img-premium">
+                        </div>
+                        
+                        <div class="mt-8 lg:text-left">
+                            <h2 class="text-[10px] tracking-[0.4em] text-amber-800 uppercase mb-2 font-bold italic">Head Trainer</h2>
+                            <h3 class="text-3xl font-heading font-bold text-stone-900 uppercase tracking-tight">東 慎一郎 <span class="text-xs font-serif italic text-stone-400 ml-2 tracking-normal uppercase">Shinichiro Azuma</span></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- プロフィール文章 -->
+                <div class="w-full lg:w-3/5 text-left">
+                    <div class="space-y-8">
+                        <div>
+                            <p class="text-stone-600 leading-[2.2] text-sm sm:text-base tracking-widest font-medium">フィットネス競技に20年以上携わり、現在はプロのアスリートから一般のボディメイク希望者まで幅広く指導を行っています。年間1,200セッション以上の経験を元に、効率的かつ持続可能な身体作りをサポートします。</p>
+                            
+                            <div id="profile-extra">
+                                <p class="text-stone-600 leading-[2.2] text-sm sm:text-base tracking-widest font-medium mt-8">
+私がトレーニングに没頭したきっかけは、自身の体質改善でした。かつては非常に痩せ型で、自分に自信が持てなかった時期がありました。しかし、正しいトレーニング理論と食事管理を学ぶことで、身体だけでなく精神的にも大きな成長を実感しました。
+
+現代は情報が溢れていますが、本当に自分に合った方法は意外と見つけにくいものです。パーソナルセッションでは、一人ひとりの骨格やライフスタイルを細かく分析し、「最短距離」で目標へ導きます。
+
+「今日よりも明日、より良い自分へ」。その進化の過程を共に歩めることを楽しみにしています。</p>
+                            </div>
+
+                            <button id="toggle-profile" onclick="toggleProfile()" class="mt-8 flex items-center gap-2 text-amber-800 font-bold text-[10px] tracking-widest uppercase hover:opacity-70 transition-all">
+                                <span>Read More</span>
+                                <i data-lucide="chevron-down" id="profile-icon" class="w-4 h-4 transition-transform duration-300"></i>
+                            </button>
+                        </div>
+
+                        <!-- 経歴・実績 -->
+                        <div class="grid sm:grid-cols-2 gap-10 pt-12 border-t border-stone-100">
+                            <div>
+                                <h4 class="font-heading font-bold text-stone-900 uppercase tracking-widest border-l-4 border-amber-800 pl-4 mb-6">Track Record</h4>
+                                <ul class="space-y-3 text-[11px] sm:text-xs text-stone-500 leading-relaxed tracking-widest">
+                                    <li class="flex items-start gap-2">都内大手パーソナルジムにてシニアトレーナーを歴任</li>
+                                    <li class="flex items-start gap-2">国内フィットネス大会（フィジーク部門）入賞多数</li>
+                                    <li class="flex items-start gap-2">延べ3,000人以上のダイエット・肉体改造を指導</li>
+                                    <li class="flex items-start gap-2">専門誌へのトレーニングメソッド寄稿・監修</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-heading font-bold text-stone-900 uppercase tracking-widest border-l-4 border-amber-800 pl-4 mb-6">Qualifications</h4>
+                                <ul class="space-y-3 text-[11px] sm:text-xs text-stone-500 leading-relaxed tracking-widest">
+                                    <li class="flex items-start gap-2"><i data-lucide="check" class="w-3 h-3 text-amber-800 mt-0.5 shrink-0"></i> NSCA-CPT（認定パーソナルトレーナー）</li>
+                                    <li class="flex items-start gap-2"><i data-lucide="check" class="w-3 h-3 text-amber-800 mt-0.5 shrink-0"></i> NASM-PES（パフォーマンス向上スペシャリスト）</li>
+                                    <li class="flex items-start gap-2"><i data-lucide="check" class="w-3 h-3 text-amber-800 mt-0.5 shrink-0"></i> 栄養士免許保持</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 体験者の声 Section -->
+    <section id="voice" class="py-24 sm:py-32 bg-stone-50 text-center">
+        <div class="container mx-auto px-6">
+            <h2 class="text-[10px] tracking-[0.4em] text-amber-800 uppercase mb-4 font-bold italic">Testimonials</h2>
+            <h3 class="text-2xl sm:text-3xl md:text-5xl font-heading font-bold tracking-tight text-stone-900 mb-8 leading-tight section-title uppercase">進化を遂げたクライアントの声</h3>
+
+            <div class="grid md:grid-cols-3 gap-8 mt-16 sm:mt-24">
+                <!-- 体験談 1 -->
+                <div class="bg-white border border-stone-100 relative group transition-all duration-500 hover:shadow-xl hover:-translate-y-2 overflow-hidden flex flex-col text-left">
+                    <div class="bg-stone-200">
+                        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop" class="img-premium" alt="Client 1">
+                    </div>
+                    <div class="p-8 sm:p-10 flex flex-col flex-grow">
+                        <div class="text-[9px] text-amber-800 font-bold mb-2 uppercase tracking-widest">Body Make / -8kg Success</div>
+                        <h4 class="text-base sm:text-lg font-bold mb-4 sm:mb-6 leading-snug tracking-wide text-stone-900 font-serif italic">"本質的な技術を学べました"</h4>
+                        <p class="text-stone-500 text-xs sm:text-sm leading-relaxed mb-8 sm:mb-10 italic flex-grow">
+                            自己流で3年続けてきましたが、ここでの60分でこれまでの常識が覆されました。怪我に怯えることなく、狙った筋肉にダイレクトに効かせる感覚が分かります。
+                        </p>
+                        <div class="border-t border-stone-200 pt-6">
+                            <p class="text-[10px] font-bold text-stone-800 tracking-widest uppercase">— 都内在住 S.K様 (32歳)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 体験談 2 -->
+                <div class="bg-white border border-stone-100 relative group transition-all duration-500 hover:shadow-xl hover:-translate-y-2 overflow-hidden flex flex-col text-left">
+                    <div class="bg-stone-200">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop" class="img-premium" alt="Client 2">
+                    </div>
+                    <div class="p-8 sm:p-10 flex flex-col flex-grow">
+                        <div class="text-[9px] text-amber-800 font-bold mb-2 uppercase tracking-widest">Athlete / Performance Up</div>
+                        <h4 class="text-base sm:text-lg font-bold mb-4 sm:mb-6 leading-snug tracking-wide text-stone-900 font-serif italic">"次元の違う指導レベル"</h4>
+                        <p class="text-stone-500 text-xs sm:text-sm leading-relaxed mb-8 sm:mb-10 italic flex-grow">
+                            解剖学的な視点からのアドバイスは、プロアスリートの私にとっても目から鱗でした。身体の連動性が高まり、競技パフォーマンスが劇的に向上しました。
+                        </p>
+                        <div class="border-t border-stone-200 pt-6">
+                            <p class="text-[10px] font-bold text-stone-800 tracking-widest uppercase">— 神奈川県在住 M.T様 (28歳)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 体験談 3 -->
+                <div class="bg-white border border-stone-100 relative group transition-all duration-500 hover:shadow-xl hover:-translate-y-2 overflow-hidden flex flex-col text-left">
+                    <div class="bg-stone-200">
+                        <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=2069&auto=format&fit=crop" class="img-premium" alt="Client 3">
+                    </div>
+                    <div class="p-8 sm:p-10 flex flex-col flex-grow">
+                        <div class="text-[9px] text-amber-800 font-bold mb-2 uppercase tracking-widest">Senior / Healthy Life</div>
+                        <h4 class="text-base sm:text-lg font-bold mb-4 sm:mb-6 leading-snug tracking-wide text-stone-900 font-serif italic">"50代からでも変われました"</h4>
+                        <p class="text-stone-500 text-xs sm:text-sm leading-relaxed mb-8 sm:mb-10 italic flex-grow">
+                            運動経験がほとんどなく不安でしたが、無理のない範囲で丁寧に指導してくださいます。腰痛が改善し、日常生活が驚くほど軽やかになりました。
+                        </p>
+                        <div class="border-t border-stone-200 pt-6">
+                            <p class="text-[10px] font-bold text-stone-800 tracking-widest uppercase">— 都内在住 H.O様 (55歳)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- YouTube Movie Section (Placeholder UI) -->
+    <section id="movie" class="py-24 sm:py-32 bg-stone-900 text-white overflow-hidden text-center">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto mb-16 sm:mb-24">
+                <h2 class="text-[10px] tracking-[0.4em] text-amber-500 uppercase mb-4 font-bold italic">Experience</h2>
+                <h3 class="text-2xl sm:text-3xl md:text-5xl font-heading font-bold tracking-tight mb-8 leading-tight section-title uppercase after:bg-amber-500">トレーニング風景</h3>
+                <p class="text-stone-400 leading-loose text-xs sm:text-sm md:text-base tracking-widest font-medium mt-10 px-4">
+                    言葉だけでは伝えきれない、筋肉が連動する「一瞬」を。<br />CORE AXISが提供する、本質的なアプローチをご覧ください。
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="block relative aspect-video rounded-sm overflow-hidden shadow-2xl group cursor-pointer bg-stone-800">
+                    <img src="https://images.unsplash.com/photo-1517838276518-2dd027448d65?q=80&w=2070&auto=format&fit=crop" alt="Video Thumbnail" class="w-full h-full object-cover opacity-60 img-premium">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-md relative play-button-ripple">
+                            <i data-lucide="play" class="text-white fill-white w-8 h-8 ml-1"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- はじめての方へ Section -->
+    <section id="trial" class="py-24 sm:py-32 bg-white text-center">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-12 sm:gap-20 items-center">
+                <div class="lg:w-1/2 lg:text-left">
+                    <h2 class="text-[10px] tracking-[0.4em] text-amber-800 uppercase mb-4 font-bold italic">How to Start</h2>
+                    <h3 class="text-2xl sm:text-3xl md:text-5xl font-heading font-bold tracking-tight text-stone-900 mb-8 uppercase">無料体験トレーニングの流れ</h3>
+                    <p class="text-stone-600 mb-12 leading-loose tracking-widest font-medium text-xs sm:text-sm md:text-base">
+                        「今の自分が何をすべきか」を明確にする60分間。<br />
+                        これまでのトレーニングの常識が変わる体験を、まずは気軽にお試しください。
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 mb-16 justify-center lg:justify-start">
+                        <a href="#" class="btn-premium text-white px-8 py-4 rounded-sm text-[10px] tracking-widest uppercase font-bold flex items-center justify-center gap-3 transition-all shadow-lg hover:shadow-xl">
+                            <i data-lucide="message-circle" class="w-4 h-4"></i> LINEで体験予約
+                        </a>
+                        <a href="tel:00000000000" class="border border-stone-900 text-stone-900 px-8 py-4 rounded-sm text-[10px] tracking-widest uppercase font-bold hover:bg-stone-900 hover:text-white transition-all flex items-center justify-center gap-3">
+                            <i data-lucide="phone" class="w-4 h-4"></i> お電話でお問い合わせ
+                        </a>
+                    </div>
+
+                    <div class="space-y-6 sm:space-y-8 lg:text-left">
+                        <div class="flex items-start gap-4 sm:gap-6 text-left">
+                            <span class="font-heading text-2xl sm:text-3xl font-bold text-amber-800 opacity-30">01</span>
+                            <div>
+                                <h4 class="font-bold text-base sm:text-lg mb-2 text-stone-900">カウンセリング（15分）</h4>
+                                <p class="text-stone-500 text-xs sm:text-sm leading-relaxed">目的や現在の悩み、怪我の既往歴などを詳しく伺い、あなただけのゴールを設計します。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 sm:gap-6 text-left">
+                            <span class="font-heading text-2xl sm:text-3xl font-bold text-amber-800 opacity-30">02</span>
+                            <div>
+                                <h4 class="font-bold text-base sm:text-lg mb-2 text-stone-900">姿勢・動作分析 & 実技（40分）</h4>
+                                <p class="text-stone-500 text-xs sm:text-sm leading-relaxed">骨格のクセを分析。解剖学的に最も負荷が乗るフォームをマンツーマンで実践します。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 sm:gap-6 text-left">
+                            <span class="font-heading text-2xl sm:text-3xl font-bold text-amber-800 opacity-30">03</span>
+                            <div>
+                                <h4 class="font-bold text-base sm:text-lg mb-2 text-stone-900">プラン提案（5分）</h4>
+                                <p class="text-stone-500 text-xs sm:text-sm leading-relaxed">体験で見えた課題を整理し、目標達成のための最適な頻度と内容を提案します。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="shadow-lg">
+                            <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=2070&auto=format&fit=crop" alt="Workout 1" class="img-premium">
+                        </div>
+                        <div class="shadow-lg mt-8">
+                            <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2adfcd?q=80&w=2070&auto=format&fit=crop" alt="Workout 2" class="img-premium">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 料金 Section -->
+    <section id="price" class="py-24 sm:py-32 bg-stone-900 text-white text-center">
+        <div class="container mx-auto px-6">
+            <h2 class="text-[10px] tracking-[0.4em] text-amber-600 uppercase mb-4 font-bold italic">Investment</h2>
+            <h3 class="text-2xl sm:text-3xl md:text-5xl font-heading font-bold mb-8 text-white section-title uppercase after:bg-amber-600">料金・コース案内</h3>
+            <p class="text-stone-400 mb-16 sm:mb-20 text-[10px] sm:text-sm tracking-widest italic">入会金 10,000円（体験当日のご入会で全額キャッシュバック）</p>
+
+            <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-16 sm:mb-24">
+                <div class="bg-stone-800 p-8 sm:p-10 flex flex-col items-start text-left border border-stone-700">
+                    <h4 class="text-base sm:text-lg font-heading font-bold tracking-widest mb-1 uppercase">Body Design</h4>
+                    <p class="text-[8px] sm:text-[9px] mb-8 uppercase tracking-widest text-amber-600 font-bold">バルクアップ・競技者向け</p>
+                    <div class="text-3xl sm:text-4xl font-heading font-bold mb-10">¥150,000 <span class="text-[10px] text-stone-500 font-normal italic">/ 12回</span></div>
+                    <ul class="text-[10px] sm:text-xs text-stone-400 space-y-3">
+                        <li>・1回75分 / 徹底的な技術指導</li>
+                        <li>・サプリメント・食事アドバイス付</li>
+                    </ul>
+                </div>
+                <div class="bg-white text-stone-900 p-8 sm:p-10 flex flex-col items-start text-left shadow-2xl relative md:scale-105 z-10 border-2 border-amber-800/30">
+                    <div class="absolute top-0 right-0 bg-stone-900 text-white text-[7px] sm:text-[8px] font-bold px-3 sm:px-4 py-1.5 sm:py-2 uppercase tracking-widest italic">Recommended</div>
+                    <h4 class="text-base sm:text-lg font-heading font-bold tracking-widest mb-1 uppercase">Standard Diet</h4>
+                    <p class="text-[8px] sm:text-[9px] mb-8 uppercase tracking-widest text-amber-800 font-bold">初心者・一般ダイエット</p>
+                    <div class="text-3xl sm:text-4xl font-heading font-bold mb-10">¥180,000 <span class="text-[10px] text-stone-400 font-normal italic">/ 16回</span></div>
+                    <ul class="text-[10px] sm:text-xs text-stone-500 space-y-3">
+                        <li>・1回75分 / ライフスタイル改善</li>
+                        <li>・無理のない食事管理サポート</li>
+                    </ul>
+                </div>
+                <div class="bg-stone-800 p-8 sm:p-10 flex flex-col items-start text-left border border-stone-700">
+                    <h4 class="text-base sm:text-lg font-heading font-bold tracking-widest mb-1 uppercase">Master Course</h4>
+                    <p class="text-[8px] sm:text-[9px] mb-8 uppercase tracking-widest text-amber-600 font-bold">50歳以上の健康維持</p>
+                    <div class="text-3xl sm:text-4xl font-heading font-bold mb-10">¥160,000 <span class="text-[10px] text-stone-500 font-normal italic">/ 16回</span></div>
+                    <ul class="text-[10px] sm:text-xs text-stone-400 space-y-3">
+                        <li>・1回75分 / 関節可動域の改善</li>
+                        <li>・長期的な健康寿命の延伸</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 月額プラン -->
+            <div class="max-w-4xl mx-auto bg-stone-800/50 p-8 sm:p-12 border border-stone-700">
+                <h4 class="font-heading text-xl sm:text-2xl font-bold mb-10 tracking-[0.2em] uppercase italic text-center">Membership Plans</h4>
+                <div class="grid md:grid-cols-2 gap-10 sm:gap-12 text-left">
+                    <div>
+                        <h5 class="font-bold text-amber-600 mb-4 tracking-widest uppercase italic font-serif text-sm sm:text-base">Monthly Light</h5>
+                        <div class="text-2xl sm:text-3xl font-heading font-bold mb-4">¥64,000 <span class="text-[10px] sm:text-xs text-stone-500 font-normal italic">/ 月4回</span></div>
+                        <p class="text-stone-400 text-[10px] sm:text-xs leading-loose">週に一度の定期的なメンテナンス。着実にフォームを定着させたい方のためのプランです。</p>
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-amber-600 mb-4 tracking-widest uppercase italic font-serif text-sm sm:text-base">Monthly Standard</h5>
+                        <div class="text-2xl sm:text-3xl font-heading font-bold mb-4">¥120,000 <span class="text-[10px] sm:text-xs text-stone-500 font-normal italic">/ 月8回</span></div>
+                        <p class="text-stone-400 text-[10px] sm:text-xs leading-loose">週2回の頻度で変化を加速させるプラン。最短で身体を変えたい方へ。</p>
+                    </div>
+                </div>
+                <div class="mt-10 sm:mt-12 pt-10 sm:pt-12 border-t border-stone-700">
+                    <p class="text-[10px] sm:text-xs text-stone-500 italic">※単発セッション（1回75分）：¥18,000 も承っております。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- アクセス Section -->
+    <section id="access" class="py-24 sm:py-32 bg-white text-center">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-16 sm:gap-20">
+                <div class="lg:w-1/3 lg:text-left">
+                    <h2 class="text-[10px] tracking-[0.4em] text-amber-800 uppercase mb-4 font-bold italic">Location</h2>
+                    <h3 class="text-2xl sm:text-3xl font-heading font-bold tracking-tight text-stone-900 mb-12 uppercase">アクセス</h3>
+                    <div class="space-y-8 text-stone-600">
+                        <div>
+                            <p class="font-bold text-stone-900 mb-2 uppercase">Address</p>
+                            <p class="leading-loose text-xs italic">〒107-0062 東京都港区南青山0-0-0<br />PRIME BUILDING 3F</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-stone-900 mb-2 uppercase">By Train</p>
+                            <p class="leading-loose text-xs italic">東京メトロ「表参道駅」より徒歩3分<br />「青山一丁目駅」より徒歩10分</p>
+                        </div>
+                        <div class="p-4 sm:p-6 bg-stone-50 border-l-4 border-amber-800 text-left">
+                            <p class="font-bold text-amber-800 text-[9px] sm:text-[10px] mb-2 uppercase italic tracking-widest">※お車でお越しの方へ</p>
+                            <p class="text-[9px] sm:text-[10px] leading-loose">専用駐車場はございません。近隣のコインパーキング（提携なし）をご利用ください。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-2/3 h-[350px] sm:h-[500px] bg-stone-100 relative shadow-inner">
+                    <!-- Placeholder Map -->
+                    <div class="absolute inset-0 w-full h-full bg-stone-200 flex items-center justify-center">
+                        <div class="text-center">
+                            <i data-lucide="map-pin" class="w-10 h-10 text-stone-400 mx-auto mb-4"></i>
+                            <p class="text-xs text-stone-500 tracking-widest font-bold uppercase">Google Maps API (Placeholder)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stone-50 py-24 sm:py-32 border-t border-stone-200 text-center">
+        <div class="container mx-auto px-6">
+            <h3 class="text-3xl sm:text-4xl font-heading font-bold mb-8 italic tracking-tighter uppercase text-stone-900">Strong for Life.</h3>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mb-20 sm:mb-24 px-4">
+                <a href="#" class="btn-premium text-white px-8 sm:px-12 py-4 sm:py-5 rounded-sm text-[9px] sm:text-[10px] tracking-widest uppercase font-bold flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-xl">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i> LINEで無料体験を予約
+                </a>
+                <a href="tel:00000000000" class="border border-stone-900 text-stone-900 px-8 sm:px-12 py-4 sm:py-5 rounded-sm text-[9px] sm:text-[10px] tracking-widest uppercase font-bold hover:bg-stone-900 hover:text-white transition-all flex items-center justify-center gap-2">
+                    <i data-lucide="phone" class="w-4 h-4"></i> お電話でお問い合わせ
+                </a>
+            </div>
+
+            <div class="text-2xl sm:text-3xl font-heading font-bold tracking-[0.3em] mb-6 text-stone-900 uppercase italic">CORE AXIS</div>
+            <p class="text-[8px] sm:text-[9px] text-stone-300 tracking-[0.1em] uppercase font-bold italic">© 2024 CORE AXIS. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (nav) {
+                if (window.scrollY > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.setAttribute('data-lucide', 'x');
+            } else {
+                menu.classList.add('hidden');
+                icon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons();
+        }
+
+        // Profile toggle
+        function toggleProfile() {
+            const extra = document.getElementById('profile-extra');
+            const btnText = document.querySelector('#toggle-profile span');
+            const icon = document.getElementById('profile-icon');
+            
+            if (extra.classList.contains('open')) {
+                extra.classList.remove('open');
+                btnText.textContent = 'Read More';
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                extra.classList.add('open');
+                btnText.textContent = 'Close';
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+    </script>
+</body>
+</html>
