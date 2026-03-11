@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <title>LUMINA | 恵比寿の韓国式マシンピラティス×パーソナルジム</title>
+    <meta name="description" content="渋谷区恵比寿の完全個室パーソナルスタジオLUMINA。韓国式マシンピラティスによる姿勢改善とパーソナルトレーニングで、美しくしなやかな身体へ。">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --forest-deep: #2D362E;
+            --forest-sage: #8A9A8C;
+            --logo-gold: #C5A059;
+            --vibrant-gold: #D4AF37;
+            --organic-cream: #FAF9F6;
+        }
+        html, body { 
+            overflow-x: hidden; 
+            width: 100%; 
+            position: relative;
+            -webkit-text-size-adjust: 100%;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Noto Sans JP', sans-serif; color: #333; background-color: #fff; }
+        h1, h2, h3, .serif { font-family: 'Noto Serif JP', serif; }
+        
+        .hero-bg {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), url('https://github.com/yakimoto-design/image/blob/main/%E3%83%94%E3%83%A9%E3%83%86%E3%82%A3%E3%82%B9.png?raw=true') center/cover no-repeat;
+            height: 100vh;
+            display: flex;
+            align-items: center; justify-content: center; position: relative;
+        }
+        
+        .fade-in { animation: fadeIn 2.5s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .scroll-down { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); color: white; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; opacity: 0.8; }
+        .scroll-down::after { content: ''; display: block; width: 1px; height: 40px; background: rgba(255,255,255,0.4); margin: 10px auto 0; animation: scrollLine 2s infinite; }
+        @keyframes scrollLine { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform: scaleY(1); transform-origin: top; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+        
+        .section-title::after { content: ''; display: block; width: 30px; height: 1px; background: var(--logo-gold); margin: 20px auto; }
+        .bg-organic { background-color: var(--organic-cream); }
+        .text-gold { color: var(--logo-gold); }
+        .bg-forest { background-color: var(--forest-deep); }
+        
+        .btn-gold { background-color: var(--logo-gold); color: white; transition: all 0.4s; letter-spacing: 0.15em; }
+        .btn-gold:hover { background-color: #AF8B46; transform: translateY(-2px); box-shadow: 0 5px 20px rgba(197, 160, 89, 0.3); }
+
+        .btn-reserve { background-color: var(--forest-deep); color: white; transition: all 0.4s; letter-spacing: 0.1em; border: 1px solid var(--logo-gold); }
+        .btn-reserve:hover { background-color: var(--logo-gold); transform: translateY(-2px); }
+        
+        .nav-glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); }
+        
+        .check-list li { position: relative; padding-left: 1.5rem; }
+        .check-list li::before { content: '✔'; position: absolute; left: 0; color: var(--logo-gold); }
+        
+        #mobile-menu { transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); transform: translateX(100%); }
+        #mobile-menu.active { transform: translateX(0); }
+
+        .price-row { border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .price-row:last-child { border-bottom: none; }
+
+        .campaign-badge {
+            background-color: var(--vibrant-gold);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
+        
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-[100] nav-glass border-b border-gray-100/50">
+        <div class="max-w-7xl mx-auto px-5 h-20 md:h-24 flex items-center justify-between">
+            <a href="#" class="serif tracking-[0.2em] group">
+                <span class="text-xl md:text-2xl block leading-none font-bold uppercase">LUMINA</span>
+                <span class="text-[8px] md:text-[9px] text-gray-400 mt-1 block uppercase font-sans">Premium Studio Ebisu</span>
+            </a>
+            
+            <div class="hidden md:flex items-center space-x-6 lg:space-x-8 text-[10px] tracking-[0.3em] uppercase">
+                <a href="#concept" class="hover:text-gold transition-colors">Concept</a>
+                <a href="#service" class="hover:text-gold transition-colors">Service</a>
+                <a href="#trainer" class="hover:text-gold transition-colors">Trainer</a>
+                <a href="#price" class="hover:text-gold transition-colors">Menu</a>
+                <a href="#connect" class="hover:text-gold transition-colors">SNS</a>
+                <a href="#access" class="hover:text-gold transition-colors">Access</a>
+                <a href="#" class="btn-gold px-8 py-3 rounded-full font-bold shadow-sm text-white">予約する</a>
+            </div>
+
+            <button id="menu-toggle" class="md:hidden text-black focus:outline-none p-2" aria-label="Menu">
+                <div class="w-6 h-0.5 bg-black mb-1.5 transition-all"></div>
+                <div class="w-6 h-0.5 bg-black mb-1.5"></div>
+                <div class="w-6 h-0.5 bg-black"></div>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-[110] bg-white flex flex-col items-center justify-center space-y-8 text-center">
+        <a href="#concept" class="text-lg serif tracking-widest text-black menu-link">Concept</a>
+        <a href="#service" class="text-lg serif tracking-widest text-black menu-link">Service</a>
+        <a href="#trainer" class="text-lg serif tracking-widest text-black menu-link">Trainer</a>
+        <a href="#price" class="text-lg serif tracking-widest text-black menu-link">Menu</a>
+        <a href="#connect" class="text-lg serif tracking-widest text-black menu-link">SNS</a>
+        <a href="#access" class="text-lg serif tracking-widest text-black menu-link">Access</a>
+        <a href="#" class="btn-gold px-12 py-4 rounded-full font-bold text-sm tracking-widest">Web予約</a>
+        <button id="menu-close" class="mt-8 text-gray-400 uppercase text-[10px] tracking-widest underline">Close</button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-bg text-center text-white px-6">
+        <div class="fade-in max-w-5xl">
+            <p class="text-[10px] md:text-xs tracking-[0.5em] mb-8 font-light opacity-90 uppercase">Korean Machine Pilates & Personal Training</p>
+            <h1 class="text-2xl sm:text-4xl md:text-5xl lg:text-7xl mb-12 md:mb-16 leading-[1.8] md:leading-[1.6] serif font-normal">
+                「鍛える場所」ではなく<br>
+                「整い、満たされる場所」
+            </h1>
+            <div class="flex justify-center">
+                <a href="#concept" class="text-[10px] tracking-[0.4em] border border-white/40 px-12 py-4 md:px-16 md:py-5 hover:bg-white hover:text-black transition-all duration-700 uppercase">
+                    Discover More
+                </a>
+            </div>
+        </div>
+        <div class="scroll-down">Scroll</div>
+    </section>
+
+    <!-- Concept Section -->
+    <section id="concept" class="py-20 md:py-40 px-6 max-w-4xl mx-auto text-center">
+        <span class="text-gold text-[10px] tracking-[0.4em] uppercase mb-8 block font-bold">Nature & Harmony</span>
+        
+        <div class="mb-12 md:mb-16">
+            <h2 class="text-xl md:text-4xl serif font-normal leading-[1.8] md:leading-relaxed text-black">
+                恵比寿で叶える、最先端ピラティス。<br>
+                「整い、満たされる」凛とした美しさを。
+            </h2>
+        </div>
+
+        <div class="max-w-md mx-auto py-8 md:py-10 border-y border-gray-100 mb-12 md:mb-16">
+            <ul class="check-list text-left inline-block space-y-4 text-black serif font-medium text-[13px] md:text-base">
+                <li>韓国式ピラティスでしなやかなボディラインを作りたい方</li>
+                <li>忙しい日常の中でも、自分を大切にする時間を持ちたい方</li>
+                <li>年齢を重ねても、美しく動ける身体でいたい方</li>
+                <li>体重だけではなく「佇まい」を整えたい方</li>
+            </ul>
+        </div>
+
+        <div class="flex flex-col items-center">
+            <a href="#" class="btn-reserve px-12 py-5 rounded-full font-bold shadow-lg flex items-center gap-3">
+                <i class="far fa-calendar-check text-xl"></i>
+                <span class="tracking-widest">体験レッスンを予約する</span>
+            </a>
+            <p class="text-[10px] mt-6 tracking-[0.2em] text-gray-400">渋谷区恵比寿の完全予約制マンツーマンスタジオ</p>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-1 bg-white border-y border-gray-50">
+        <div class="aspect-square overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1599447421416-3414500d18a5?q=80&w=2070&auto=format&fit=crop" alt="Interior 1" class="w-full h-full object-cover transition-transform duration-[3000ms] group-hover:scale-110">
+        </div>
+        <div class="aspect-square overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop" alt="Interior 2" class="w-full h-full object-cover transition-transform duration-[3000ms] group-hover:scale-110">
+        </div>
+        <div class="aspect-square overflow-hidden group">
+            <!-- 追加されたピラティス画像2を適用 -->
+            <img src="https://github.com/yakimoto-design/image/blob/main/%E3%83%94%E3%83%A9%E3%83%86%E3%82%A3%E3%82%B92.png?raw=true" alt="Pilates Session" class="w-full h-full object-cover transition-transform duration-[3000ms] group-hover:scale-110">
+        </div>
+        <div class="aspect-square overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?q=80&w=1974&auto=format&fit=crop" alt="Lounge" class="w-full h-full object-cover transition-transform duration-[3000ms] group-hover:scale-110">
+        </div>
+    </section>
+
+    <!-- Service Section -->
+    <section id="service" class="py-24 md:py-48 px-6 bg-organic">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-2xl md:text-3xl text-center mb-20 md:mb-28 section-title serif font-normal tracking-widest uppercase">Our Service</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
+                <!-- 01 Machine Pilates -->
+                <div class="flex flex-col group">
+                    <div class="aspect-[4/3] mb-8 md:mb-12 overflow-hidden shadow-xl rounded-sm">
+                        <!-- 韓国式マシンピラティスのイメージにピラティス画像2を適用 -->
+                        <img src="https://github.com/yakimoto-design/image/blob/main/%E3%83%94%E3%83%A9%E3%83%86%E3%82%A3%E3%82%B92.png?raw=true" alt="Korean Pilates" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                    </div>
+                    <span class="text-gold serif text-[10px] md:text-[11px] tracking-[0.4em] mb-3 uppercase">01. Korean-style Machine Pilates</span>
+                    <h3 class="text-xl md:text-2xl mb-4 md:mb-6 serif font-bold">韓国式マシンピラティス</h3>
+                    <p class="text-black serif text-xs md:text-sm mb-4">美しさを追求する「韓国式」メソッド</p>
+                    <p class="text-gray-500 text-[13px] md:text-sm leading-[2.2] md:leading-[2.4] font-light">
+                        ボディメイクに特化した、本場韓国のピラティスメソッド。専用マシンで深層筋を刺激し、しなやかな曲線美と凛とした立ち姿をデザインします。
+                    </p>
+                </div>
+                <!-- 02 Personal Training -->
+                <div class="flex flex-col group">
+                    <div class="aspect-[4/3] mb-8 md:mb-12 overflow-hidden shadow-xl rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop" alt="Training" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                    </div>
+                    <span class="text-gold serif text-[10px] md:text-[11px] tracking-[0.4em] mb-3 uppercase">02. Personal Training</span>
+                    <h3 class="text-xl md:text-2xl mb-4 md:mb-6 serif font-bold">パーソナルトレーニング</h3>
+                    <p class="text-black serif text-xs md:text-sm mb-4">最短で理想を叶える、私だけの空間</p>
+                    <p class="text-gray-500 text-[13px] md:text-sm leading-[2.2] md:leading-[2.4] font-light">
+                        科学的根拠に基づいたマンツーマン指導。ダイエットや筋力アップだけでなく、姿勢改善を含めたトータルなボディプロデュースを提供します。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trainer Section -->
+    <section id="trainer" class="py-24 md:py-48 px-6 bg-white border-y border-gray-50 text-center">
+        <div class="max-w-5xl mx-auto">
+            <span class="text-gold text-[10px] tracking-[0.4em] uppercase mb-8 block font-bold">Trainers</span>
+            <h2 class="text-2xl md:text-4xl mb-20 md:mb-32 serif font-normal text-black tracking-[0.1em]">Trainers</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-20 md:gap-32">
+                <!-- Rina -->
+                <div class="px-4">
+                    <span class="text-gold serif text-[10px] tracking-[0.3em] uppercase block mb-3 opacity-60">Lead Instructor</span>
+                    <h3 class="text-xl md:text-3xl mb-8 serif font-bold text-black tracking-[0.3em]">RINA</h3>
+                    <div class="w-8 h-px bg-gold mx-auto mb-8"></div>
+                    <p class="text-gray-600 text-[15px] md:text-[16px] leading-[2.2] font-light italic">
+                        「身体が変わることで、心も前向きになれる。その変化の過程を、一番近くでサポートさせていただきます✨」
+                    </p>
+                </div>
+                <!-- Takumi -->
+                <div class="px-4">
+                    <span class="text-gold serif text-[10px] tracking-[0.3em] uppercase block mb-3 opacity-60">Personal Trainer</span>
+                    <h3 class="text-xl md:text-3xl mb-8 serif font-bold text-black tracking-[0.3em]">TAKUMI</h3>
+                    <div class="w-8 h-px bg-gold mx-auto mb-8"></div>
+                    <p class="text-gray-600 text-[15px] md:text-[16px] leading-[2.2] font-light italic">
+                        「一人ひとりの骨格やライフスタイルに合わせた、無理のない、けれど確実な変化。プロとしての視点でサポートします」
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Price Menu Section -->
+    <section id="price" class="py-24 md:py-48 px-6 bg-organic">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-2xl md:text-3xl text-center mb-20 md:mb-28 section-title serif font-normal tracking-widest uppercase text-black">Price Menu</h2>
+            
+            <div class="mb-16 bg-white p-6 md:p-12 rounded-sm border-l-4 border-gold shadow-sm relative overflow-hidden text-left">
+                <div class="mb-8">
+                    <span class="campaign-badge inline-block text-white text-xs md:text-sm px-6 py-2 tracking-[0.2em] font-bold rounded-full">
+                        期間限定キャンペーン
+                    </span>
+                </div>
+                
+                <div class="space-y-8">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-gray-50 pb-6">
+                        <h3 class="text-lg md:text-xl serif">入会金</h3>
+                        <div class="text-right">
+                            <span class="text-sm text-gray-400 line-through mr-3">通常 ¥20,000</span>
+                            <span class="text-2xl md:text-3xl serif font-bold text-gold">¥0</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                        <div>
+                            <h3 class="text-lg md:text-xl serif font-bold">体験レッスン 40分</h3>
+                            <p class="text-[10px] text-gray-400 mt-1">カウンセリング + 姿勢分析 + マンツーマン体験</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-sm text-gray-400 line-through mr-3">通常 ¥5,000</span>
+                            <span class="text-2xl md:text-3xl serif font-bold text-gold">¥2,000</span>
+                            <span class="text-xs ml-1">(税込)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-0 text-sm md:text-base mb-16">
+                <div class="price-row flex justify-between py-6 items-center">
+                    <span class="serif text-black">パーソナルセッション 60分 単発</span>
+                    <span class="font-bold">¥10,000</span>
+                </div>
+                <div class="price-row flex justify-between py-6 items-center text-left">
+                    <div class="flex flex-col">
+                        <span class="serif text-black">4回チケット</span>
+                        <span class="text-[10px] text-gray-400 font-light">1回あたり ¥9,500</span>
+                    </div>
+                    <span class="font-bold">¥38,000</span>
+                </div>
+                <div class="price-row flex justify-between py-6 items-center text-left">
+                    <div class="flex flex-col">
+                        <span class="serif text-black">12回チケット（推奨）</span>
+                        <span class="text-[10px] text-gray-400 font-light">1回あたり ¥8,800</span>
+                    </div>
+                    <span class="font-bold">¥105,600</span>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a href="#" class="btn-reserve px-12 py-5 rounded-full font-bold shadow-xl inline-flex items-center gap-4 text-white">
+                    <i class="far fa-calendar-check text-2xl"></i>
+                    <span class="tracking-widest">体験を予約する</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stay Connected Section -->
+    <section id="connect" class="py-24 md:py-32 bg-forest text-white text-center px-6">
+        <div class="max-w-4xl mx-auto">
+            <span class="text-gold text-[10px] tracking-[0.5em] uppercase mb-8 block font-bold">Stay Connected</span>
+            <h2 class="text-xl md:text-3xl mb-12 serif font-normal">Official SNS</h2>
+            <p class="text-[13px] md:text-sm text-gray-400 mb-16 font-light">最新の空き状況や、日々のトレーニングのヒントを発信しています。</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                <a href="#" class="flex flex-col items-center p-8 border border-white/10 hover:bg-white/5 transition-all duration-500">
+                    <i class="fab fa-line text-3xl mb-6 text-[#06C755]"></i>
+                    <h3 class="serif text-lg md:text-xl mb-4 font-normal tracking-wider">Official LINE</h3>
+                    <p class="text-[12px] text-gray-400 leading-loose font-light">予約・お問合せはこちらから承っております。</p>
+                    <span class="mt-8 text-[9px] tracking-[0.3em] uppercase border-b border-gold pb-1 text-gold">Add Friend</span>
+                </a>
+                <a href="#" class="flex flex-col items-center p-8 border border-white/10 hover:bg-white/5 transition-all duration-500">
+                    <i class="fab fa-instagram text-3xl mb-6 text-white"></i>
+                    <h3 class="serif text-lg md:text-xl mb-4 font-normal tracking-wider">Instagram</h3>
+                    <p class="text-[12px] text-gray-400 leading-loose font-light">スタジオの雰囲気や指導風景をご覧いただけます。</p>
+                    <span class="mt-8 text-[9px] tracking-[0.3em] uppercase border-b border-gold pb-1 text-gold">Follow Us</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Access Section -->
+    <section id="access" class="py-24 md:py-48 px-6 bg-white text-center md:text-left">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-16 md:gap-24 items-center">
+            <div class="md:w-1/2 w-full">
+                <h2 class="text-2xl md:text-3xl mb-16 section-title md:text-left serif font-normal tracking-widest uppercase text-black font-bold">Access</h2>
+                <div class="space-y-10 md:space-y-12 text-[13px] tracking-[0.2em] text-gray-500 font-light text-left">
+                    <div class="pb-8 border-b border-gray-200">
+                        <span class="font-bold text-black serif text-[11px] block mb-4 uppercase tracking-[0.5em] text-gold">Location</span>
+                        <span class="leading-loose text-black font-medium text-base md:text-lg">〒150-0022 東京都渋谷区恵比寿南1丁目0-0 LUMINAビル 3F</span>
+                        <div class="mt-6">
+                            <a href="#" class="inline-flex items-center justify-center gap-2 bg-stone-100 hover:bg-stone-200 text-stone-800 px-6 py-3 rounded text-[11px] tracking-widest uppercase transition-colors">
+                                <i class="fas fa-location-arrow"></i> Google Map
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="font-bold text-black serif text-[11px] block mb-4 uppercase tracking-[0.5em] text-gold">Opening Hours</span>
+                        <span class="leading-loose text-black">平日 10:00 - 21:00 / 土日祝 9:00 - 19:00<br>定休日：不定休（完全予約制）</span>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-1/2 w-full h-[400px] bg-stone-100 flex items-center justify-center rounded-sm">
+                <div class="text-center text-stone-400">
+                    <i class="fas fa-map-marked-alt text-4xl mb-4"></i>
+                    <p class="text-[10px] tracking-widest uppercase">Ebisu Area Map</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 md:py-32 text-center bg-organic px-6 border-t border-gray-100">
+        <div class="flex flex-col items-center mb-12">
+            <h2 class="text-2xl md:text-3xl serif tracking-[0.4em] mb-4 font-bold text-black uppercase leading-none">LUMINA</h2>
+            <p class="text-[9px] md:text-[11px] tracking-[0.6em] text-gray-400 uppercase font-light border-t border-gray-100 pt-6 mt-2">Premium Studio Ebisu</p>
+        </div>
+        <p class="text-[8px] md:text-[9px] text-gray-300 tracking-[0.4em] uppercase font-light">&copy; 2025 LUMINA PREMIUM STUDIO. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuClose = document.getElementById('menu-close');
+        const menuLinks = document.querySelectorAll('.menu-link');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('active');
+            document.body.classList.toggle('overflow-hidden');
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        menuClose.addEventListener('click', toggleMenu);
+        
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.classList.remove('overflow-hidden');
+            });
+        });
+    </script>
+
+</body>
+</html>
